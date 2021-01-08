@@ -1,5 +1,6 @@
 # Knowledge Graph files
 CaLiGraph/
+CaLiGraph/arch
 *.nt
 *.csv
 

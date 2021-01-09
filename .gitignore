@@ -1,8 +1,10 @@
 # Knowledge Graph files
 CaLiGraph/
-CaLiGraph/arch
+CaLiGraph/arch/
 *.nt
 *.csv
+.idea/
+.idea/inspectionProfiles/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

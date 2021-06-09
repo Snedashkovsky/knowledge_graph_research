@@ -11,6 +11,7 @@ IPFS_HOST = dotenv_values(".env")['IPFS_HOST']
 CYBERLINK_CREATION_QUERY = dotenv_values(".env")['CYBERLINK_CREATION_QUERY']
 
 CYBER_ACCOUNT = dotenv_values(".env")['CYBER_ACCOUNT']
+CYBER_ACCOUNT_NAME = dotenv_values(".env")['CYBER_ACCOUNT_NAME']
 
 BASH_TIMEOUT = 20
 

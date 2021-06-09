@@ -1,9 +1,8 @@
 # Knowledge Graph files
-CaLiGraph/
-CaLiGraph/arch/
-Wikidata/
+data/
 *.nt
 *.csv
+*.gz
 .idea/
 .idea/inspectionProfiles/
 

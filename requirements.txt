@@ -1,3 +1,9 @@
 pandas
 clickhouse_driver
 fast-pagerank
+requests
+python-dotenv
+tqdm
+numpy
+retry
+gql

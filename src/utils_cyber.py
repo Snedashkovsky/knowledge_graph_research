@@ -1,26 +1,34 @@
-from time import sleep
-from tqdm.notebook import tqdm
+import json
+from pprint import pprint
+from cyber_sdk.key.mnemonic import MnemonicKey
+from cyber_sdk.client.lcd.api.tx import CreateTxOptions
+from cyber_sdk.core.graph import MsgCyberlink
 
-from src.utils_bash import create_cyberlink
-from config import CYBER_ACCOUNT_NAME
-
-
-def create_cl(account_name, from_hash, to_hash, print_message):
-    cyberlink_hash, cyberlink_error = \
-        create_cyberlink(
-            account_name=account_name,
-            from_hash=from_hash,
-            to_hash=to_hash)
-    if cyberlink_error:
-        print(f'CyberLink from {from_hash} to {to_hash} was not created, error: {cyberlink_error}')
-    elif cyberlink_hash and print_message:
-        print(f'CyberLink from {from_hash} to {to_hash} created')
+from config import WALLET_SEED, bostrom_lcd_client
 
 
-def create_cls(link_candidates, sleep_time=0, print_message=False, account_name=CYBER_ACCOUNT_NAME):
-    for link_candidate in tqdm(link_candidates):
-        sleep(sleep_time)
-        create_cl(account_name=account_name,
-                  from_hash=link_candidate[0],
-                  to_hash=link_candidate[1],
-                  print_message=print_message)
+def create_cls(link_candidates: list, account_seed: str = WALLET_SEED, print_message: bool = False) -> json:
+    _key = MnemonicKey(
+        mnemonic=account_seed
+    )
+    _wallet = bostrom_lcd_client.wallet(key=_key)
+    _wallet.account_number_and_sequence()
+
+    _msgs = [MsgCyberlink(
+        _wallet.key.acc_address,
+        link_candidate[0],
+        link_candidate[1]
+    ) for link_candidate in link_candidates]
+
+    _tx = _wallet.create_and_sign_tx(
+        CreateTxOptions(
+            msgs=_msgs,
+            gas_prices="0boot",
+            gas=str(200_000 + 40_000 * len(link_candidates))
+        )
+    )
+
+    _result = json.loads(bostrom_lcd_client.tx.broadcast(_tx).to_json())
+    if print_message:
+        pprint(_result)
+    return _result

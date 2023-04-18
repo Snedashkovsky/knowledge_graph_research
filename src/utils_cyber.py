@@ -7,7 +7,8 @@ from cyber_sdk.core.graph import MsgCyberlink
 from config import WALLET_SEED, bostrom_lcd_client
 
 
-def create_cls(link_candidates: list, account_seed: str = WALLET_SEED, print_message: bool = False) -> json:
+def create_cls(link_candidates: list, account_seed: str = WALLET_SEED, print_message: bool = False,
+               min_gas_per_tx: int = 200_000, gas_per_link: int = 40_000, max_gas_per_tx: int = 24_000_000) -> json:
     _key = MnemonicKey(
         mnemonic=account_seed
     )
@@ -24,7 +25,7 @@ def create_cls(link_candidates: list, account_seed: str = WALLET_SEED, print_mes
         CreateTxOptions(
             msgs=_msgs,
             gas_prices="0boot",
-            gas=str(200_000 + 40_000 * len(link_candidates))
+            gas=str(min(min_gas_per_tx + gas_per_link * len(link_candidates), max_gas_per_tx))
         )
     )
 

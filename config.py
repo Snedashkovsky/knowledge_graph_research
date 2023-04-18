@@ -21,9 +21,12 @@ WALLET_SEED = dotenv_values('.env')['WALLET_SEED']
 
 BASH_TIMEOUT = 20
 
-GRAPHQL_URL = 'https://index.euler-6.cybernode.ai/v1/graphql'
+GRAPHQL_URL = 'https://index.bostrom.cybernode.ai/v1/graphql'
 
-bostrom_lcd_client = LCDClient(
+BOSTROM_NODE_RPC_URL = 'https://rpc.bostrom.cybernode.ai:443'
+BOSTROM_NODE_LCD_URL = 'https://lcd.bostrom.cybernode.ai/'
+BOSTROM_CHAIN_ID = 'bostrom'
+BOSTROM_LCD_CLIENT = LCDClient(
     url="https://lcd.bostrom.cybernode.ai/",
     chain_id="bostrom",
 )

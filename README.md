@@ -1,6 +1,8 @@
 ## Research of Knowledge Graphs 
+
 ### Install
 [ClickHouse](https://clickhouse.tech/docs/en/getting-started/install/)
+
 ### Knowledge Graph sources
 #### [CaLiGraph](http://caligraph.org/resources.html)  
 - 125M links  
@@ -13,9 +15,13 @@
 - 5,556M links
 - 43 GB in Clickhouse  
 - 41 GB in archive    
-### Bostrom 
 
-For graph extraction:
+### Knowledge Graph processing
+#### [Upload RDF standard Knowledge Graphs to Clickhouse (nt files)](upload_nt_to_ch.ipynb)
+#### [Process Raw Knowledge Graphs in Clickhouse](process_raw_knowledge_graph_in_ch.ipynb)
+
+### Bostrom 
+#### Graph extraction
 - install and synchronize [cyberindex](https://github.com/cybercongress/cyberindex)
 - install postgresql client
 ```bash
@@ -29,9 +35,7 @@ psql --host=localhost --username=default --dbname=cyberd
 ```sql
 \copy cyberlink to 'cyberlink.csv' csv header
 ```
-### Upload RDF standard Knowledge Graphs to Clickhouse (nt files)
-[jupyter notebook](upload_nt_to_ch.ipynb)
-### Process Raw Knowledge Graphs in Clickhouse
-[jupyter notebook](process_raw_knowledge_graph_in_ch.ipynb)
-### Upload Knowledge Graph to Bostrom network
-[jupyter notebook](upload_knowledge_graph_to_bostrom.ipynb)
+
+#### [Upload Knowledge Graph to Bostrom network](upload_knowledge_graph_to_bostrom.ipynb)
+
+#### [Upload Content Type Subgraph](upload_content_type_subgraph.ipynb)

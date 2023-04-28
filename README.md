@@ -38,10 +38,4 @@ psql --host=localhost --username=default --dbname=cyberd
 
 #### [Upload Knowledge Graph to Bostrom network](upload_knowledge_graph_to_bostrom.ipynb)
 
-#### [Upload Content-Type and Type-Content Subgraphs](upload_content_type_subgraphs.ipynb)
-- upload links `content CID -> type CID` into Content-Type subgraph  
-
-you can find a type of any data-classified content, ex. [linked image](https://cyb.ai/ipfs/QmUY1dHhBo8ya3dLZpLN8gK7eMWuUyt7oMHXKM6qH2GKqa/answers).
-- upload links `type CID -> content CID` into Type-Content subgraph
-
-you can find CIDs of ranked and data-classified content with a tag type, ex. [images](https://cyb.ai/search/image).
+#### [Upload Content-Type and Type-Content Subgraphs](https://github.com/Snedashkovsky/cw-cyber-scripts/blob/main/upload_content_type_subgraphs.ipynb)

@@ -30,3 +30,4 @@ BOSTROM_LCD_CLIENT = LCDClient(
     url="https://lcd.bostrom.cybernode.ai/",
     chain_id="bostrom",
 )
+BASE_COIN_DENOM = 'boot'

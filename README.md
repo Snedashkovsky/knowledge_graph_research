@@ -38,4 +38,4 @@ psql --host=localhost --username=default --dbname=cyberd
 
 #### [Upload Knowledge Graph to Bostrom network](upload_knowledge_graph_to_bostrom.ipynb)
 
-#### [Upload Content Type Subgraph](upload_content_type_subgraph.ipynb)
+#### [Upload Content-Type and Type-Content Subgraphs](https://github.com/Snedashkovsky/cw-cyber-scripts/blob/main/upload_content_type_subgraphs.ipynb)

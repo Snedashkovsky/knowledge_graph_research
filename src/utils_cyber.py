@@ -5,11 +5,8 @@ from typing import Optional
 from cyber_sdk.core.graph import MsgCyberlink
 from cyber_sdk.key.mnemonic import MnemonicKey
 from cyber_sdk.client.lcd.api.tx import CreateTxOptions, BlockTxBroadcastResult
-from cyber_sdk.core.fee import Fee
-from cyber_sdk.core import Coin, Coins, AccAddress
-from cyber_sdk.exceptions import LCDResponseError
-from cyber_sdk.core.wasm import MsgExecuteContract
 from cyber_sdk.client.lcd.wallet import Wallet
+from cyberutils.contract import execute_contract
 
 from config import WALLET_SEED, BOSTROM_LCD_CLIENT, BASE_COIN_DENOM
 
@@ -40,31 +37,6 @@ def create_cls(link_candidates: list[list[str]], account_seed: str = WALLET_SEED
     if print_message:
         pprint(_result)
     return _result
-
-
-def execute_contract(execute_msgs: list, wallet: Wallet, contract_address: str, gas: int, fee_amount: int,
-                     fee_denom: str = BASE_COIN_DENOM, memo: Optional[str] = None) -> Optional[BlockTxBroadcastResult]:
-
-    _create_links_msgs = \
-        [MsgExecuteContract(
-            sender=wallet.key.acc_address,
-            contract=AccAddress(contract_address),
-            execute_msg=execute_msg) for execute_msg in execute_msgs]
-
-    _tx_signed = wallet.create_and_sign_tx(
-        CreateTxOptions(
-            msgs=_create_links_msgs,
-            memo=memo,
-            fee=Fee(gas, Coins([Coin(amount=fee_amount, denom=fee_denom)]))
-        ))
-
-    try:
-        _tx_broadcasted = BOSTROM_LCD_CLIENT.tx.broadcast(_tx_signed)
-        return _tx_broadcasted
-
-    except LCDResponseError as _e:
-        print(f'LCDResponseError: {_e}')
-        return None
 
 
 def create_subgraph_links(link_candidates: list[list[str]], wallet: Wallet, subgraph_contract_address: str,

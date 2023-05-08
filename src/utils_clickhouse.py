@@ -1,11 +1,11 @@
 from pandas import DataFrame
 from os import system
 
-from config import execute
+from config import clickhouse_execute
 
 
 def load_from_ch_to_df(sql_query, columns=None):
-    return DataFrame(execute(sql_query), columns=columns)
+    return DataFrame(clickhouse_execute(sql_query), columns=columns)
 
 
 def upload_to_ch(file_name, dir_url=None, transformation=True, gz=False, file_type='nt',
